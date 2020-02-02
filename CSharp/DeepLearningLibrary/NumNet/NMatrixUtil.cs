@@ -6,6 +6,18 @@ namespace NumNet
 {
     public static class NMatrixUtil
     {
+        public static NMatrix Add(this NMatrix A, NMatrix B)
+        {
+            if (A.Row != B.Row || A.Col != B.Col) return NMatrix.Empty;
+            uint length = A.Row * A.Col;
+            double[] array = new double[length];
+            for (uint i = 0; i < length; i++)
+            {
+                array[i] = A[i] + B[i];
+            }
+            NMatrix matrix = new NMatrix(A.Row, A.Col, array);
+            return matrix;
+        }
         public static NMatrix I(uint size)
         {// TODO: Should be optimized
             if (size == 0) return NMatrix.Empty;
