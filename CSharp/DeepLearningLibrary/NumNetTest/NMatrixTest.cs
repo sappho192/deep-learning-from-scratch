@@ -13,6 +13,20 @@ namespace NumNetTest
             Assert.True((new NMatrix(1, 1, null)).Invalid);
             Assert.False(
                 (new NMatrix(1, 1, new double[] { 1.0 })).Invalid);
+            var MatA = new NMatrix(2, 3,
+                new double[] { 1, 2, 3, 4, 5, 6 });
+            Assert.Equal(1, MatA[0]);
+            Assert.Equal(2, MatA[1]);
+            Assert.Equal(3, MatA[2]);
+            Assert.Equal(4, MatA[3]);
+            Assert.Equal(5, MatA[4]);
+            Assert.Equal(6, MatA[5]);
+            Assert.Equal(1, MatA[0,0]);
+            Assert.Equal(2, MatA[0,1]);
+            Assert.Equal(3, MatA[0,2]);
+            Assert.Equal(4, MatA[1,0]);
+            Assert.Equal(5, MatA[1,1]);
+            Assert.Equal(6, MatA[1,2]);
         }
 
         [Fact]
