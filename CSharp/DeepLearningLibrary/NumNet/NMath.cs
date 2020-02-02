@@ -9,7 +9,7 @@ namespace NumNet
             double x1, double x2)
         {
             //return 22; // for unit test
-            return w1 * x1 + w2 * x2 <= theta ? 0 : 1;
+            return w1 * x1 + w2 * x2 - theta <= 0 ? 0 : 1;
         }
 
         public static double AND(double x1, double x2)
