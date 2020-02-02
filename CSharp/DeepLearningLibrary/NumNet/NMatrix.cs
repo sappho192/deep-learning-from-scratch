@@ -7,15 +7,18 @@ namespace NumNet
     /// <summary>
     /// 2 dimensional matrix
     /// </summary>
-    public class NMatrix
+    public partial class NMatrix
     {
         public NMatrix(uint row, uint column, double[] array)
         {
-            if(array.Length.Equals(row * column))
+            if (row != 0 && column != 0 && array.Length != 0)
             {
-                Row = row;
-                Col = column;
-                arr = array;
+                if (array.Length.Equals(row * column))
+                {
+                    Row = row;
+                    Col = column;
+                    arr = array;
+                }
             }
         }
 
