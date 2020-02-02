@@ -14,7 +14,7 @@ namespace NumNetTest
 
         private void SigmoidTest()
         {
-            Assert.True(Equals(0.04742587317, NMath.Sigmoid(-3)));
+            Assert.True(Equals(0.047425873177566781, NMath.Sigmoid(-3)));
         }
 
         [Fact]
