@@ -19,12 +19,40 @@ namespace NumNet
             return matrix;
         }
 
+        public static NMatrix Sub(this NMatrix A, NMatrix B)
+        {
+            if (A.Row != B.Row || A.Col != B.Col) return NMatrix.Empty;
+            uint length = A.Row * A.Col;
+            double[] array = new double[length];
+            for (uint i = 0; i < length; i++)
+            {
+                array[i] = A[i] - B[i];
+            }
+            NMatrix matrix = new NMatrix(A.Row, A.Col, array);
+            return matrix;
+        }
+
         public static NMatrix Mult(this NMatrix A, double value)
         {
             double[] array = new double[A.Row * A.Col];
             for (uint i = 0; i < array.Length; i++)
             {
                 array[i] = A[i] * value;
+            }
+            return new NMatrix(A.Row, A.Col, array);
+        }
+
+        public static NMatrix Div(this NMatrix A, double value)
+        {
+            if (value == 0)
+            {
+                return NMatrix.Empty;
+            }
+
+            double[] array = new double[A.Row * A.Col];
+            for (uint i = 0; i < array.Length; i++)
+            {
+                array[i] = A[i] / value;
             }
             return new NMatrix(A.Row, A.Col, array);
         }
