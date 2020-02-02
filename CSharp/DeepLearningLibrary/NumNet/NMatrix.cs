@@ -11,14 +11,21 @@ namespace NumNet
     {
         public NMatrix(uint row, uint column, double[] array)
         {
-            if (row != 0 && column != 0 && array.Length != 0)
+            if (array == null) Invalid = true;
+            else
             {
-                if (array.Length.Equals(row * column))
+                if (row != 0 && column != 0 && array.Length != 0)
                 {
-                    Row = row;
-                    Col = column;
-                    arr = array;
+                    if (array.Length == (row * column))
+                    {
+                        Row = row;
+                        Col = column;
+                        arr = array;
+                        Invalid = false;
+                    }
+                    else { Invalid = true; }
                 }
+                else { Invalid = true; }
             }
         }
 
@@ -33,6 +40,8 @@ namespace NumNet
             get { return arr[i * Col + j]; }
             set { arr[i * Col + j] = value; }
         }
+
+        public bool Invalid { get; }
 
         public uint Row { get; }
         public uint Col { get; }
