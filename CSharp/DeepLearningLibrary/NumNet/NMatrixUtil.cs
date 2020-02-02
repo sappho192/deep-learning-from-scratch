@@ -32,6 +32,33 @@ namespace NumNet
             return matrix;
         }
 
+        /// <summary>
+        /// <para>Matrix-wise functional map function</para>
+        /// <para>Example) matA.Map(matB,(elemA, elemB) => { return elemA* elemB; });</para>
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        public static NMatrix Map(this NMatrix A, NMatrix B, Func<double, double, double> func)
+        {
+            if (A.Row != B.Row || A.Col != B.Col) return NMatrix.Empty;
+            uint length = A.Row * A.Col;
+            double[] array = new double[length];
+            for (uint i = 0; i < length; i++)
+            {
+                array[i] = func.Invoke(A[i], B[i]);
+            }
+            return new NMatrix(A.Row, A.Col, array);
+        }
+
+        /// <summary>
+        /// <para>Element-wise functional map function</para>
+        /// <para>Example) matA.Map((elem) => { return elem * 0.5; });</para>
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="func"></param>
+        /// <returns></returns>
         public static NMatrix Map(this NMatrix A, Func<double, double> func)
         {
             double[] array = new double[A.Row * A.Col];
@@ -44,12 +71,7 @@ namespace NumNet
 
         public static NMatrix Mult(this NMatrix A, double value)
         {
-            double[] array = new double[A.Row * A.Col];
-            for (uint i = 0; i < array.Length; i++)
-            {
-                array[i] = A[i] * value;
-            }
-            return new NMatrix(A.Row, A.Col, array);
+            return Map(A, (elem) => { return elem * value; });
         }
 
         public static NMatrix Div(this NMatrix A, double value)
@@ -59,12 +81,7 @@ namespace NumNet
                 return NMatrix.Empty;
             }
 
-            double[] array = new double[A.Row * A.Col];
-            for (uint i = 0; i < array.Length; i++)
-            {
-                array[i] = A[i] / value;
-            }
-            return new NMatrix(A.Row, A.Col, array);
+            return Map(A, (elem) => { return elem / value; });
         }
 
         public static NMatrix Dot(this NMatrix A, NMatrix B)
