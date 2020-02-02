@@ -19,6 +19,16 @@ namespace NumNet
             return matrix;
         }
 
+        public static NMatrix Mult(this NMatrix A, double value)
+        {
+            double[] array = new double[A.Row * A.Col];
+            for (uint i = 0; i < array.Length; i++)
+            {
+                array[i] = A[i] * value;
+            }
+            return new NMatrix(A.Row, A.Col, array);
+        }
+
         public static NMatrix Dot(this NMatrix A, NMatrix B)
         {
             /*
