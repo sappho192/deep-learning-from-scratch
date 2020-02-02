@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using NumNet;
+using System;
 
 namespace NumNetTest
 {
@@ -27,6 +28,9 @@ namespace NumNetTest
             Assert.Equal(4, MatA[1,0]);
             Assert.Equal(5, MatA[1,1]);
             Assert.Equal(6, MatA[1,2]);
+            var MatB = new NMatrix(2, 3,
+                new double[] { 1, 2, 3, 4, 5, 6 });
+            Assert.True(MatA.Equals(MatB));
         }
 
         [Fact]
@@ -39,11 +43,18 @@ namespace NumNetTest
             var MatC = new NMatrix(3, 2,
                 new double[] { 6, 5, 4, 3, 2, 1 });
 
+            MapTest(MatA);
             AddTest(MatA, MatB, MatC);
             SubTest(MatA, MatB, MatC);
             DotTest(MatA, MatB, MatC);
             MultTest();
             DivTest();
+        }
+
+        private void MapTest(NMatrix matA)
+        {
+            var MatMap = matA.Map((elem) => { return elem * 0.5; });
+            Assert.False(MatMap.Invalid);
         }
 
         private void AddTest(NMatrix MatA, NMatrix MatB, NMatrix MatC)

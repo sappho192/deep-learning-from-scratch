@@ -32,6 +32,16 @@ namespace NumNet
             return matrix;
         }
 
+        public static NMatrix Map(this NMatrix A, Func<double, double> func)
+        {
+            double[] array = new double[A.Row * A.Col];
+            for (uint i = 0; i < array.Length; i++)
+            {
+                array[i] = func.Invoke(A[i]);
+            }
+            return new NMatrix(A.Row, A.Col, array);
+        }
+
         public static NMatrix Mult(this NMatrix A, double value)
         {
             double[] array = new double[A.Row * A.Col];
