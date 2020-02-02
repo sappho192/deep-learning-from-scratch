@@ -7,6 +7,16 @@ namespace NumNetTest
     public class NMathTest
     {
         [Fact]
+        public void ActivationFunctionTest()
+        {
+            SigmoidTest();
+        }
+
+        private void SigmoidTest()
+        {
+            Assert.True(Equals(0.04742587317, NMath.Sigmoid(-3)));
+        }
+
         [Fact]
         public void NeuralFunctionTest()
         {
