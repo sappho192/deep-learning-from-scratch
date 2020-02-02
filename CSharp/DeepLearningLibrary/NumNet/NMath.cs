@@ -8,6 +8,7 @@ namespace NumNet
             double w1, double w2, double theta,
             double x1, double x2)
         {
+            //return 22; // for unit test
             return w1 * x1 + w2 * x2 <= theta ? 0 : 1;
         }
 
