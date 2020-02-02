@@ -10,6 +10,7 @@ namespace NumNetTest
         public void ActivationFunctionTest()
         {
             SigmoidTest();
+            SoftmaxTest();
         }
 
         private void SigmoidTest()
