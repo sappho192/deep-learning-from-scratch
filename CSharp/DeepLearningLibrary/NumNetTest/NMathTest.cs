@@ -18,6 +18,39 @@ namespace NumNetTest
         }
 
         [Fact]
+        public void SignalFunctionTest()
+        {
+            UnitStepTest();
+            SignumTest();
+            RampTest();
+        }
+
+        private void UnitStepTest()
+        {
+            Assert.Equal(0, NMath.UnitStep(double.MinValue));
+            Assert.Equal(0, NMath.UnitStep(0));
+            Assert.Equal(1, NMath.UnitStep(1));
+            Assert.Equal(1, NMath.UnitStep(double.MaxValue));
+        }
+
+        private void SignumTest()
+        {
+            Assert.Equal(-1, NMath.Signum(double.MinValue));
+            Assert.Equal(-1, NMath.Signum(-1));
+            Assert.Equal(0,  NMath.Signum(0));
+            Assert.Equal(1,  NMath.Signum(1));
+            Assert.Equal(1,  NMath.Signum(double.MaxValue));
+        }
+
+        private void RampTest()
+        {
+            Assert.Equal(0, NMath.Ramp(double.MinValue));
+            Assert.Equal(0, NMath.Ramp(0));
+            Assert.Equal(1, NMath.Ramp(1));
+            Assert.Equal(double.MaxValue, NMath.Ramp(double.MaxValue));
+        }
+
+        [Fact]
         public void NeuralFunctionTest()
         {
             PerceptronTest();

@@ -4,6 +4,23 @@ namespace NumNet
 {
     public static class NMath
     {
+        public static double UnitStep(double x)
+        {
+            return x > 0 ? 1 : 0;
+        }
+
+        public static double Signum(double x)
+        {
+            if (x > 0)  return 1;
+            if (x == 0) return 0;
+            return -1;
+        }
+
+        public static double Ramp(double x)
+        {
+            return x > 0 ? x : 0;
+        }
+
         public static double Sigmoid(double x)
         {
             return 1 / (1 + Math.Exp(-x));
