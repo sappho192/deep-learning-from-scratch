@@ -22,12 +22,12 @@ namespace NumNetTest
             Assert.Equal(4, MatA[3]);
             Assert.Equal(5, MatA[4]);
             Assert.Equal(6, MatA[5]);
-            Assert.Equal(1, MatA[0,0]);
-            Assert.Equal(2, MatA[0,1]);
-            Assert.Equal(3, MatA[0,2]);
-            Assert.Equal(4, MatA[1,0]);
-            Assert.Equal(5, MatA[1,1]);
-            Assert.Equal(6, MatA[1,2]);
+            Assert.Equal(1, MatA[0, 0]);
+            Assert.Equal(2, MatA[0, 1]);
+            Assert.Equal(3, MatA[0, 2]);
+            Assert.Equal(4, MatA[1, 0]);
+            Assert.Equal(5, MatA[1, 1]);
+            Assert.Equal(6, MatA[1, 2]);
             var MatB = new NMatrix(2, 3,
                 new double[] { 1, 2, 3, 4, 5, 6 });
             Assert.True(MatA.Equals(MatB));
@@ -43,7 +43,7 @@ namespace NumNetTest
             var MatC = new NMatrix(3, 2,
                 new double[] { 6, 5, 4, 3, 2, 1 });
 
-            MapTest(MatA);
+            MapTest(MatA, MatB, MatC);
             AddTest(MatA, MatB, MatC);
             SubTest(MatA, MatB, MatC);
             DotTest(MatA, MatB, MatC);
@@ -51,10 +51,17 @@ namespace NumNetTest
             DivTest();
         }
 
-        private void MapTest(NMatrix matA)
+        private void MapTest(NMatrix matA, NMatrix matB, NMatrix matC)
         {
-            var MatMap = matA.Map((elem) => { return elem * 0.5; });
-            Assert.False(MatMap.Invalid);
+            var MatMap1 = matA.Map((elem) => { return elem * 0.5; });
+            Assert.False(MatMap1.Invalid);
+
+            var MatMap2 = matA.Map(matB,
+                (elemA, elemB) => { return elemA * elemB; });
+            Assert.False(MatMap2.Invalid);
+            var MatMap3 = matA.Map(matC,
+                (elemA, elemB) => { return elemA * elemB; });
+            Assert.True(MatMap3.Invalid);
         }
 
         private void AddTest(NMatrix MatA, NMatrix MatB, NMatrix MatC)
