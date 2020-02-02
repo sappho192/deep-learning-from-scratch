@@ -30,6 +30,20 @@ namespace NumNet
             }
         }
 
+        public NMatrix(NMatrix B)
+        {
+            if (B.Invalid)
+            {
+                Invalid = true;
+            } else
+            {
+                Row = B.Row;
+                Col = B.Col;
+                arr = new double[B.arr.Length];
+                B.arr.CopyTo(arr, 0);
+            }
+        }
+
         public double this[uint i]
         {
             get { return arr[i]; }
