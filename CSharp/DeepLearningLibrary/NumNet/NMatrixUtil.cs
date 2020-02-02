@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -149,6 +150,21 @@ namespace NumNet
             }
             var matrix = new NMatrix(size, size, array);
             return matrix;
+        }
+
+        public static double Max(this NMatrix A)
+        {
+            return A.RawArray.Max();
+        }
+
+        public static double Min(this NMatrix A)
+        {
+            return A.RawArray.Min();
+        }
+
+        public static double Sum(this NMatrix A)
+        {
+            return A.RawArray.Sum();
         }
     }
 }
