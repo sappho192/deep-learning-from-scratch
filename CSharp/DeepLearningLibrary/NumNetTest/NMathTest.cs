@@ -20,6 +20,7 @@ namespace NumNetTest
             ANDTest();
             ORTest();
             NANDTest();
+            XORTest();
         }
 
         private static void ANDTest()
@@ -44,6 +45,14 @@ namespace NumNetTest
             Assert.Equal(1, NMath.NAND(0, 1));
             Assert.Equal(1, NMath.NAND(0, 1));
             Assert.Equal(0, NMath.NAND(1, 1));
+        }
+
+        private static void XORTest()
+        {
+            Assert.Equal(0, NMath.XOR(0, 0));
+            Assert.Equal(1, NMath.XOR(0, 1));
+            Assert.Equal(1, NMath.XOR(0, 1));
+            Assert.Equal(0, NMath.XOR(1, 1));
         }
     }
 }

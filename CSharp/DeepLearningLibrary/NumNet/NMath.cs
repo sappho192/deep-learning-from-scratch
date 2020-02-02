@@ -26,5 +26,10 @@ namespace NumNet
         {
             return Perceptron(-0.5, -0.5, -0.6, x1, x2);
         }
+
+        public static double XOR(double x1, double x2)
+        {
+            return AND(OR(x1, x2), NAND(x1, x2));
+        }
     }
 }
