@@ -27,6 +27,7 @@ namespace NumNetTest
 
             AddTest(MatA, MatB, MatC);
             DotTest(MatA, MatB, MatC);
+            MultTest();
         }
 
         private void AddTest(NMatrix MatA, NMatrix MatB, NMatrix MatC)
@@ -49,6 +50,23 @@ namespace NumNetTest
              */
             var MatDot2 = MatA.Dot(MatC);
             Assert.False(MatDot2.Invalid);
+        }
+
+        private void MultTest()
+        {
+            var MatA = new NMatrix(2, 3,
+                new double[]
+                {
+                    1,2,3,4,5,6
+                });
+            var MatMult1 = MatA.Mult(-0.5);
+            var MatAnswer = new NMatrix(MatA.Row, MatA.Col,
+                new double[] {
+                    -0.5, -1, -1.5,
+                    -2, -2.5, -3
+                });
+
+            Assert.True(MatAnswer.Equals(MatMult1));
         }
     }
 }
