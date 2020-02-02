@@ -21,7 +21,7 @@ namespace NumNet
                     {
                         Row = row;
                         Col = column;
-                        arr = array;
+                        RawArray = array;
                         Invalid = false;
                     }
                     else { Invalid = true; }
@@ -35,25 +35,26 @@ namespace NumNet
             if (B.Invalid)
             {
                 Invalid = true;
-            } else
+            }
+            else
             {
                 Row = B.Row;
                 Col = B.Col;
-                arr = new double[B.arr.Length];
-                B.arr.CopyTo(arr, 0);
+                RawArray = new double[B.RawArray.Length];
+                B.RawArray.CopyTo(RawArray, 0);
             }
         }
 
         public double this[uint i]
         {
-            get { return arr[i]; }
-            set { arr[i] = value; }
+            get { return RawArray[i]; }
+            set { RawArray[i] = value; }
         }
 
         public double this[uint i, uint j]
         {
-            get { return arr[i * Col + j]; }
-            set { arr[i * Col + j] = value; }
+            get { return RawArray[i * Col + j]; }
+            set { RawArray[i * Col + j] = value; }
         }
 
         public override bool Equals(object obj)
@@ -100,8 +101,8 @@ namespace NumNet
             //return base.GetHashCode();
             int hashResult = Row.GetHashCode();
             hashResult ^= Col.GetHashCode();
-            hashResult ^= 
-                ((IStructuralEquatable)this.arr)
+            hashResult ^=
+                ((IStructuralEquatable)this.RawArray)
                 .GetHashCode(EqualityComparer<double>.Default);
             return hashResult;
         }
@@ -110,6 +111,6 @@ namespace NumNet
 
         public uint Row { get; }
         public uint Col { get; }
-        private double[] arr;
+        public double[] RawArray { get; }
     }
 }
