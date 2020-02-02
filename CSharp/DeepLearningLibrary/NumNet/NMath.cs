@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace NumNet
 {
@@ -24,6 +25,26 @@ namespace NumNet
         public static double Sigmoid(double x)
         {
             return 1 / (1 + Math.Exp(-x));
+        }
+
+        public static NMatrix Softmax(NMatrix matrix)
+        {
+            var maxElem = matrix.Max();
+            var expMatrix = matrix.Map(
+                (elem) => { return Math.Exp(elem - maxElem); });
+
+            double expSum = 0;
+            for (uint i = 0; i < expMatrix.Row * expMatrix.Col; i++)
+            {
+                expSum += expMatrix[i];
+            }
+
+            var resultMatrix = new NMatrix(expMatrix);
+            for (uint i = 0; i < resultMatrix.Row * resultMatrix.Col; i++)
+            {
+                resultMatrix[i] = expMatrix[i] / expSum;
+            }
+            return resultMatrix;
         }
 
         public static double Perceptron(

@@ -17,6 +17,15 @@ namespace NumNetTest
             Assert.True(Equals(0.047425873177566781, NMath.Sigmoid(-3)));
         }
 
+        private void SoftmaxTest()
+        {
+            var matA = new NMatrix(1, 3,
+                new double[] { 0.3, 2.9, 4.0 });
+
+            var matResult = NMath.Softmax(matA);
+            Assert.False(matResult.Invalid);
+        }
+
         [Fact]
         public void SignalFunctionTest()
         {
