@@ -7,7 +7,13 @@ namespace NumNetTest
     public class NMathTest
     {
         [Fact]
-        public void PerceptronTest()
+        [Fact]
+        public void NeuralFunctionTest()
+        {
+            PerceptronTest();
+        }
+
+        private void PerceptronTest()
         {
             var resultAND = NMath.Perceptron(
                 0.5, 0.5, 0.6, 1, 1);
