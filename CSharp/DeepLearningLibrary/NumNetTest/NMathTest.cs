@@ -21,9 +21,12 @@ namespace NumNetTest
         {
             var matA = new NMatrix(1, 3,
                 new double[] { 0.3, 2.9, 4.0 });
+            var arrA = new double[] { 0.3, 2.9, 4.0 };
 
-            var matResult = NMath.Softmax(matA);
-            Assert.False(matResult.Invalid);
+            var matResult1 = NMath.Softmax(matA);
+            Assert.False(matResult1.Invalid);
+            var matResult2 = NMath.Softmax(arrA);
+            Assert.True(matResult1.RawArray.Equals(matResult2));
         }
 
         [Fact]

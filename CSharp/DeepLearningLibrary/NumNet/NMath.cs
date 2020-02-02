@@ -27,6 +27,25 @@ namespace NumNet
             return 1 / (1 + Math.Exp(-x));
         }
 
+        public static double[] Softmax(double[] matrix)
+        {
+            var maxElem = matrix.Max();
+            var expMatrix = new double[matrix.Length];
+            for (int i = 0; i < matrix.Length; i++)
+            {
+                expMatrix[i] = Math.Exp(matrix[i] - maxElem);
+            }
+
+            double expSum = expMatrix.Sum();
+
+            var resultMatrix = new double[matrix.Length];
+            for (uint i = 0; i < resultMatrix.Length; i++)
+            {
+                resultMatrix[i] = expMatrix[i] / expSum;
+            }
+            return resultMatrix;
+        }
+
         public static NMatrix Softmax(NMatrix matrix)
         {
             var maxElem = matrix.Max();
