@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -39,6 +40,56 @@ namespace NumNet
         {
             get { return arr[i * Col + j]; }
             set { arr[i * Col + j] = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as NMatrix);
+        }
+
+        public bool Equals(NMatrix B)
+        {
+            // If parameter is null, return false.
+            if (ReferenceEquals(B, null))
+            {
+                return false;
+            }
+
+            // Optimization for a common success case.
+            if (ReferenceEquals(this, B))
+            {
+                return true;
+            }
+
+            // If run-time types are not exactly the same, return false.
+            if (GetType() != B.GetType())
+            {
+                return false;
+            }
+
+            if (Row != B.Row || Col != B.Col
+                || Invalid || B.Invalid)
+            {
+                return false;
+            }
+
+            for (uint i = 0; i < (Row * Col); i++)
+            {
+                if (this[i] != B[i]) return false;
+            }
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            //return base.GetHashCode();
+            int hashResult = Row.GetHashCode();
+            hashResult ^= Col.GetHashCode();
+            hashResult ^= 
+                ((IStructuralEquatable)this.arr)
+                .GetHashCode(EqualityComparer<double>.Default);
+            return hashResult;
         }
 
         public bool Invalid { get; }
