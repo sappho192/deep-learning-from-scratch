@@ -26,6 +26,7 @@ namespace NumNetTest
                 new double[] { 6, 5, 4, 3, 2, 1 });
 
             AddTest(MatA, MatB, MatC);
+            DotTest(MatA, MatB, MatC);
         }
 
         private void AddTest(NMatrix MatA, NMatrix MatB, NMatrix MatC)
@@ -34,6 +35,20 @@ namespace NumNetTest
             Assert.False(MatSum1.Invalid);
             var MatSum2 = MatA.Add(MatC);
             Assert.True(MatSum2.Invalid);
+        }
+
+        private void DotTest(NMatrix MatA, NMatrix MatB, NMatrix MatC)
+        {
+            var MatDot1 = MatA.Dot(MatB);
+            Assert.True(MatDot1.Invalid);
+
+            /*
+             * 1 2 3     6 5 
+             * 4 5 6  .  4 3
+             *           2 1
+             */
+            var MatDot2 = MatA.Dot(MatC);
+            Assert.False(MatDot2.Invalid);
         }
     }
 }

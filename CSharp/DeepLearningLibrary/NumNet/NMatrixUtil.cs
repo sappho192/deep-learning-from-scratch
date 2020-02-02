@@ -18,6 +18,37 @@ namespace NumNet
             NMatrix matrix = new NMatrix(A.Row, A.Col, array);
             return matrix;
         }
+
+        public static NMatrix Dot(this NMatrix A, NMatrix B)
+        {
+            /*
+             * a b c .  0 1 2
+             * d e f    3 4 5
+             *          6 7 8
+             * 
+             * => [a0+b3+c6, a1+b4+c7, a2+b5+c8,
+             *     d0+e3+f6, d1+e4+f7, d2+e5+f8]
+             */
+            if (A.Col != B.Row) return NMatrix.Empty;
+            uint length = A.Row * B.Col;
+            double[] array = new double[length];
+            uint arrIdx = 0;
+
+            for (uint i = 0; i < A.Row; i++)
+            {
+                for (uint k = 0; k < B.Col; k++)
+                {
+                    for (uint j = 0; j < A.Col; j++)
+                    {
+                        array[arrIdx] += A[i, j] * B[j, k];
+                    }
+                    arrIdx++;
+                }
+            }
+            var result = new NMatrix(A.Row, B.Col, array);
+            return result;
+        }
+
         public static NMatrix I(uint size)
         {// TODO: Should be optimized
             if (size == 0) return NMatrix.Empty;
