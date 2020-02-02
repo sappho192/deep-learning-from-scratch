@@ -107,6 +107,24 @@ namespace NumNet
             return hashResult;
         }
 
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append("[");
+            for (uint i = 0; i < RawArray.Length; i++)
+            {
+                stringBuilder.Append(RawArray[i]);
+                if (i == (RawArray.Length - 1)) break;
+                stringBuilder.Append(", ");
+                if (i % Col == Col - 1)
+                {
+                    stringBuilder.Append(Environment.NewLine);
+                }
+            }
+            stringBuilder.Append("]");
+            return stringBuilder.ToString();
+        }
+
         public bool Invalid { get; }
 
         public uint Row { get; }
