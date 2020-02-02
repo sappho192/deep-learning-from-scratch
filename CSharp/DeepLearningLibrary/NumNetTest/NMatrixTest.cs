@@ -14,5 +14,26 @@ namespace NumNetTest
             Assert.False(
                 (new NMatrix(1, 1, new double[] { 1.0 })).Invalid);
         }
+
+        [Fact]
+        public void MatrixOperatorTest()
+        {
+            var MatA = new NMatrix(2, 3,
+                new double[] { 1, 2, 3, 4, 5, 6 });
+            var MatB = new NMatrix(2, 3,
+                new double[] { 6, 5, 4, 3, 2, 1 });
+            var MatC = new NMatrix(3, 2,
+                new double[] { 6, 5, 4, 3, 2, 1 });
+
+            AddTest(MatA, MatB, MatC);
+        }
+
+        private void AddTest(NMatrix MatA, NMatrix MatB, NMatrix MatC)
+        {
+            var MatSum1 = MatA.Add(MatB);
+            Assert.False(MatSum1.Invalid);
+            var MatSum2 = MatA.Add(MatC);
+            Assert.True(MatSum2.Invalid);
+        }
     }
 }
