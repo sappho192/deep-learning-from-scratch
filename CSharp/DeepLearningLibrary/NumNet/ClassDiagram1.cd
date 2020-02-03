@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="NumNet.NMatrix">
+    <Position X="3.75" Y="1.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAEiAIAAAAAAAEEAoAAAAAAAAAAAAA=</HashCode>
+      <FileName>NMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NumNet.NMatrixUtil">
+    <Position X="7" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAABAAABAgEAAAAAAACAAAAAAAAAAAACAAAAQ=</HashCode>
+      <FileName>NMatrixUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NumNet.NMath">
+    <Position X="9.75" Y="1.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAoAAAAAAAgAAAAAAAAAACAAgICAAAAAAEAAAAACg=</HashCode>
+      <FileName>NMath.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
