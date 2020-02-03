@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using NumNet;
+using System.Linq;
 
 namespace NumNetTest
 {
@@ -27,7 +28,7 @@ namespace NumNetTest
             var matResult1 = NMath.Softmax(matA);
             Assert.False(matResult1.Invalid);
             var matResult2 = NMath.Softmax(arrA);
-            Assert.True(matResult1.RawArray.Equals(matResult2));
+            Assert.True(Enumerable.SequenceEqual(matResult1.RawArray, matResult2));
         }
 
         [Fact]
